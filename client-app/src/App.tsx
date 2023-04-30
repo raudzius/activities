@@ -1,3 +1,7 @@
+import { Diversity3 } from '@mui/icons-material';
+import {
+  Box, List, ListItem, Typography,
+} from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
@@ -11,13 +15,19 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div>
-      <ul>
+    <Box>
+      <Box display="flex" alignItems="center">
+        <Diversity3 fontSize="large" />
+        <Typography component="h1" variant="h5" sx={{ fontWeight: '700' }} ml={1}>
+          Activities
+        </Typography>
+      </Box>
+      <List>
         {activities.map(({ id, title }: any) => (
-          <li key={id}>{title}</li>
+          <ListItem key={id}>{title}</ListItem>
         ))}
-      </ul>
-    </div>
+      </List>
+    </Box>
   );
 };
 
