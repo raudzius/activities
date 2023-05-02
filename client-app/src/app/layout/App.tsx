@@ -6,10 +6,10 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 const App: React.FC = () => {
-  const [activities, setActivities] = useState([]);
+  const [activities, setActivities] = useState<Activity[]>([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/activities').then((response) => {
+    axios.get<Activity[]>('http://localhost:5000/api/activities').then((response) => {
       setActivities(response.data);
     });
   }, []);
@@ -23,7 +23,7 @@ const App: React.FC = () => {
         </Typography>
       </Box>
       <List>
-        {activities.map(({ id, title }: any) => (
+        {activities.map(({ id, title }) => (
           <ListItem key={id}>{title}</ListItem>
         ))}
       </List>
