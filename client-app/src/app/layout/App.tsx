@@ -1,9 +1,9 @@
-import { Diversity3 } from '@mui/icons-material';
 import {
-  Box, List, ListItem, Typography,
+  CssBaseline, List, ListItem,
 } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import NavBar from './NavBar';
 
 const App: React.FC = () => {
   const [activities, setActivities] = useState<Activity[]>([]);
@@ -15,19 +15,15 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <Box>
-      <Box display="flex" alignItems="center">
-        <Diversity3 fontSize="large" />
-        <Typography component="h1" variant="h5" sx={{ fontWeight: '700' }} ml={1}>
-          Activities
-        </Typography>
-      </Box>
+    <>
+      <CssBaseline />
+      <NavBar />
       <List>
         {activities.map(({ id, title }) => (
           <ListItem key={id}>{title}</ListItem>
         ))}
       </List>
-    </Box>
+    </>
   );
 };
 
