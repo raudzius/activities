@@ -1,5 +1,5 @@
 import {
-  CssBaseline, List, ListItem,
+  Container, CssBaseline, List, ListItem, ThemeProvider, createTheme,
 } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
@@ -7,6 +7,13 @@ import NavBar from './NavBar';
 
 const App: React.FC = () => {
   const [activities, setActivities] = useState<Activity[]>([]);
+  const theme = createTheme({
+    palette: {
+      background: {
+        default: '#eaeaea',
+      },
+    },
+  });
 
   useEffect(() => {
     axios.get<Activity[]>('http://localhost:5000/api/activities').then((response) => {
@@ -15,15 +22,17 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <NavBar />
-      <List>
-        {activities.map(({ id, title }) => (
-          <ListItem key={id}>{title}</ListItem>
-        ))}
-      </List>
-    </>
+      <Container sx={{ mt: 6 }}>
+        <List>
+          {activities.map(({ id, title }) => (
+            <ListItem key={id}>{title}</ListItem>
+          ))}
+        </List>
+      </Container>
+    </ThemeProvider>
   );
 };
 
