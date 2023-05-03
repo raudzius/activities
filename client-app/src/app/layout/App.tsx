@@ -1,9 +1,10 @@
 import {
-  Container, CssBaseline, List, ListItem, ThemeProvider, createTheme,
+  Container, CssBaseline, ThemeProvider, createTheme,
 } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import NavBar from './NavBar';
+import ActivityDashboard from '../../features/activities/dashboard/ActivityDashboard';
 
 const App: React.FC = () => {
   const [activities, setActivities] = useState<Activity[]>([]);
@@ -26,11 +27,7 @@ const App: React.FC = () => {
       <CssBaseline />
       <NavBar />
       <Container sx={{ mt: 6 }}>
-        <List>
-          {activities.map(({ id, title }) => (
-            <ListItem key={id}>{title}</ListItem>
-          ))}
-        </List>
+        <ActivityDashboard activities={activities} />
       </Container>
     </ThemeProvider>
   );
