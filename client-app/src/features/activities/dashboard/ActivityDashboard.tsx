@@ -2,6 +2,7 @@ import React from 'react';
 import { Grid } from '@mui/material';
 import ActivityList from './ActivityList';
 import ActivityDetails from '../../details/ActivityDetails';
+import ActivityForm from '../form/ActivityForm';
 
 type Props = {
   activities: Activity[];
@@ -14,6 +15,7 @@ const ActivityDashboard: React.FC<Props> = ({ activities }) => (
     </Grid>
     <Grid item xs={4.5}>
       {activities[0] && <ActivityDetails activity={activities[0]} />}
+      <ActivityForm />
     </Grid>
   </Grid>
 );
