@@ -1,18 +1,12 @@
-import { Grid } from '@mui/material';
 import React from 'react';
+import ActivityList from './ActivityList';
 
 type Props = {
   activities: Activity[];
 };
 
 const ActivityDashboard: React.FC<Props> = ({ activities }) => (
-  <Grid container>
-    {activities.map(({ id, title }) => (
-      <Grid item key={id} xs={8}>
-        {title}
-      </Grid>
-    ))}
-  </Grid>
+  <ActivityList activities={activities} />
 );
 
 export default ActivityDashboard;
