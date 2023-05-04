@@ -6,9 +6,10 @@ import React, { ChangeEventHandler, useState } from 'react';
 type Props = {
   activity: Activity | null;
   closeForm: () => void;
+  createOrEdit: (activity: Activity) => void;
 };
 
-const ActivityForm: React.FC<Props> = ({ activity: selectedActivity, closeForm }) => {
+const ActivityForm: React.FC<Props> = ({ activity: selectedActivity, closeForm, createOrEdit }) => {
   const initialState = selectedActivity ?? {
     id: '',
     title: '',
@@ -22,7 +23,7 @@ const ActivityForm: React.FC<Props> = ({ activity: selectedActivity, closeForm }
   const [activity, setActivity] = useState(initialState);
 
   const handleSubmit = () => {
-    console.log(activity);
+    createOrEdit(activity);
   };
 
   const handleInputChange: ChangeEventHandler<HTMLInputElement | HTMLTextAreaElement> = (event) => {

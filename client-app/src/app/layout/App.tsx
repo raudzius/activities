@@ -37,6 +37,16 @@ const App: React.FC = () => {
     setEditMode(false);
   };
 
+  const handleCreateOrEditActivity = (activity: Activity) => {
+    if (activity.id) {
+      setActivities([...activities.filter((x) => x.id !== activity.id), activity]);
+    } else {
+      setActivities([...activities, activity]);
+    }
+    setEditMode(false);
+    setSelectedActivity(activity);
+  };
+
   useEffect(() => {
     axios.get<Activity[]>('http://localhost:5000/api/activities').then((response) => {
       setActivities(response.data);
@@ -56,6 +66,7 @@ const App: React.FC = () => {
           editMode={editMode}
           openForm={handleFormOpen}
           closeForm={handleFormClose}
+          createOrEdit={handleCreateOrEditActivity}
         />
       </Container>
     </ThemeProvider>
