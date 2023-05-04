@@ -13,6 +13,7 @@ type Props = {
   openForm: (id: string) => void;
   closeForm: () => void;
   createOrEdit: (activity: Activity) => void;
+  deleteActivity: (id: string) => void;
 };
 
 const ActivityDashboard: React.FC<Props> = ({
@@ -24,10 +25,15 @@ const ActivityDashboard: React.FC<Props> = ({
   openForm,
   closeForm,
   createOrEdit,
+  deleteActivity,
 }) => (
   <Grid container spacing={4}>
     <Grid item xs={7.5}>
-      <ActivityList activities={activities} selectActivity={selectActivity} />
+      <ActivityList
+        activities={activities}
+        selectActivity={selectActivity}
+        deleteActivity={deleteActivity}
+      />
     </Grid>
     <Grid item xs={4.5}>
       {activities[0] && !editMode && (

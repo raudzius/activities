@@ -13,9 +13,10 @@ import React from 'react';
 type Props = {
   activities: Activity[];
   selectActivity: (id: string) => void;
+  deleteActivity: (id: string) => void;
 };
 
-const ActivityList: React.FC<Props> = ({ activities, selectActivity }) => (
+const ActivityList: React.FC<Props> = ({ activities, selectActivity, deleteActivity }) => (
   <Box>
     {activities.map(({
       id, title, date, description, city, venue, category,
@@ -34,6 +35,15 @@ const ActivityList: React.FC<Props> = ({ activities, selectActivity }) => (
             <Chip label={category} variant="outlined" sx={{ mt: 1 }} />
           </CardContent>
           <CardActions sx={{ float: 'right' }}>
+            <Button
+              variant="contained"
+              size="medium"
+              color="error"
+              sx={{ px: 3 }}
+              onClick={() => deleteActivity(id)}
+            >
+              Delete
+            </Button>
             <Button
               variant="contained"
               size="medium"

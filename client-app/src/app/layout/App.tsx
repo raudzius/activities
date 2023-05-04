@@ -48,6 +48,10 @@ const App: React.FC = () => {
     setSelectedActivity(activity);
   };
 
+  const handleDeleteActivity = (id: string) => {
+    setActivities([...activities.filter((activity) => activity.id !== id)]);
+  };
+
   useEffect(() => {
     axios.get<Activity[]>('http://localhost:5000/api/activities').then((response) => {
       setActivities(response.data);
@@ -68,6 +72,7 @@ const App: React.FC = () => {
           openForm={handleFormOpen}
           closeForm={handleFormClose}
           createOrEdit={handleCreateOrEditActivity}
+          deleteActivity={handleDeleteActivity}
         />
       </Container>
     </ThemeProvider>
