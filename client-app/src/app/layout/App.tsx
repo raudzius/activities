@@ -8,6 +8,7 @@ import ActivityDashboard from '../../features/activities/dashboard/ActivityDashb
 
 const App: React.FC = () => {
   const [activities, setActivities] = useState<Activity[]>([]);
+  const [selectedActivity, setSelectedActivity] = useState<Activity | null>(null);
   const theme = createTheme({
     palette: {
       background: {
@@ -15,6 +16,15 @@ const App: React.FC = () => {
       },
     },
   });
+
+  const handleSelectActivity = (id: string) => {
+    const identifiedActivity = activities.find((activity) => activity.id === id) || null;
+    setSelectedActivity(identifiedActivity);
+  };
+
+  const handleCancelSelectActivity = () => {
+    setSelectedActivity(null);
+  };
 
   useEffect(() => {
     axios.get<Activity[]>('http://localhost:5000/api/activities').then((response) => {
@@ -27,7 +37,12 @@ const App: React.FC = () => {
       <CssBaseline />
       <NavBar />
       <Container sx={{ mt: 6 }}>
-        <ActivityDashboard activities={activities} />
+        <ActivityDashboard
+          activities={activities}
+          selectedActivity={selectedActivity}
+          selectActivity={handleSelectActivity}
+          cancelSelectActivity={handleCancelSelectActivity}
+        />
       </Container>
     </ThemeProvider>
   );
