@@ -4,7 +4,11 @@ import {
 import React from 'react';
 import { Image } from 'mui-image';
 
-const NavBar: React.FC = () => (
+type Props = {
+  openForm: () => void;
+};
+
+const NavBar: React.FC<Props> = ({ openForm }) => (
   <AppBar
     position="static"
     sx={{
@@ -19,7 +23,7 @@ const NavBar: React.FC = () => (
           <Typography variant="h6">Reactivities</Typography>
         </Box>
         <Typography variant="button">Activities</Typography>
-        <Button variant="contained" color="success">
+        <Button variant="contained" color="success" onClick={openForm}>
           Create Activity
         </Button>
       </Toolbar>

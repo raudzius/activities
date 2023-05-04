@@ -13,9 +13,14 @@ import React from 'react';
 type Props = {
   activity: Activity | null;
   cancelSelectActivity: () => void;
+  openForm: (id: string) => void;
 };
 
-const ActivityDetails: React.FC<Props> = ({ activity, cancelSelectActivity }) => activity && (
+const ActivityDetails: React.FC<Props> = ({
+  activity,
+  cancelSelectActivity,
+  openForm,
+}) => activity && (
 <Card>
   <CardMedia
     sx={{ height: 140 }}
@@ -34,7 +39,7 @@ const ActivityDetails: React.FC<Props> = ({ activity, cancelSelectActivity }) =>
   <Divider />
   <CardActions>
     <ButtonGroup fullWidth>
-      <Button>Edit</Button>
+      <Button onClick={() => openForm(activity.id)}>Edit</Button>
       <Button color="error" onClick={cancelSelectActivity}>
         Cancel
       </Button>
